@@ -18,8 +18,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { Form } from "@/components/Form";
-import { useRegister } from "../hooks/useRegister";
 import { useAuth } from "@/providers/auth";
+
+import { useRegister } from "../hooks/useRegister";
 
 const registerSchema = z
   .object({

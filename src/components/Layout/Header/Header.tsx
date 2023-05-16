@@ -2,7 +2,7 @@ import React from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
-import { AccountSettings } from "./AccountSettings";
+import { SettingsMenu } from "./SettingsMenu";
 
 interface HeaderProps {
   logout: () => void;
@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ logout }) => {
         >
           News Aggregator
         </Typography>
-        <AccountSettings onLogoutClick={logout} />
+        <SettingsMenu onLogoutClick={logout} />
       </Toolbar>
     </>
   );

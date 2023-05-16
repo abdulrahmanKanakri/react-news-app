@@ -1,8 +1,4 @@
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-}
+import { User } from "@/types";
 
 export type UserInfo = User & {
   sources: { id: number; name: string }[];

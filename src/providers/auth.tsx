@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-import { User } from "@/features/auth/types";
-import { getUser } from "@/features/auth/api/getUser";
+import { getUser } from "@/features/user/api/getUser";
+import { User } from "@/types";
 import storage from "@/utils/storage";
 
 type AuthContextType = {

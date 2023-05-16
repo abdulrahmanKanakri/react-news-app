@@ -1,7 +1,6 @@
+import { ApiEndpoints } from "@/constants/api-endpoints";
 import { axios } from "@/lib/axios";
-import { BaseResponse } from "@/types";
-
-import { User } from "../types";
+import { BaseResponse, User } from "@/types";
 
 export type RegisterCredentialsDTO = {
   name: string;
@@ -20,5 +19,5 @@ export interface RegisterResponse extends BaseResponse {
 export const register = (
   data: RegisterCredentialsDTO
 ): Promise<RegisterResponse> => {
-  return axios.post("/register", data);
+  return axios.post(ApiEndpoints.register, data);
 };

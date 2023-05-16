@@ -17,25 +17,17 @@ function Copyright() {
   );
 }
 
-interface FooterProps {
-  description: string;
-  title: string;
-}
-
-const Footer: React.FC<FooterProps> = ({ description, title }) => {
+const Footer: React.FC = () => {
   return (
     <Box component="footer" sx={{ bgcolor: "background.paper", py: 6 }}>
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
-          {title}
-        </Typography>
         <Typography
           variant="subtitle1"
           align="center"
           color="text.secondary"
           component="p"
         >
-          {description}
+          A great app to have news around the world in one place.
         </Typography>
         <Copyright />
       </Container>

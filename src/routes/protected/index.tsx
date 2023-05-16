@@ -1,16 +1,10 @@
 import { Navigate, RouteObject } from "react-router-dom";
 
 import { NewsFeed } from "@/features/news/pages/NewsFeed";
+import { Profile } from "@/features/user/pages/Profile";
+import { AccountSettings } from "@/features/user/pages/AccountSettings";
 
 import { ProtectedRoutesLayout } from "./Layout";
-
-function Profile() {
-  return (
-    <>
-      <h1>Profile</h1>
-    </>
-  );
-}
 
 export const protectedRoutes: RouteObject[] = [
   {
@@ -24,6 +18,10 @@ export const protectedRoutes: RouteObject[] = [
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "account-settings",
+        element: <AccountSettings />,
       },
       { path: "*", element: <Navigate to="." /> },
     ],

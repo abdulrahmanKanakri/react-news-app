@@ -1,3 +1,4 @@
+import { ApiEndpoints } from "@/constants/api-endpoints";
 import { axios } from "@/lib/axios";
 import { BaseResponse } from "@/types";
 
@@ -10,5 +11,5 @@ export interface GetUserResponse extends BaseResponse {
 }
 
 export const getUser = async (): Promise<GetUserResponse> => {
-  return await axios.get("/me");
+  return await axios.get(ApiEndpoints.getUser);
 };

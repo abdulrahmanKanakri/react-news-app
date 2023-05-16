@@ -1,7 +1,6 @@
+import { ApiEndpoints } from "@/constants/api-endpoints";
 import { axios } from "@/lib/axios";
-import { BaseResponse } from "@/types";
-
-import { User } from "../types";
+import { BaseResponse, User } from "@/types";
 
 export type LoginCredentialsDTO = {
   email: string;
@@ -16,5 +15,5 @@ export interface LoginResponse extends BaseResponse {
 }
 
 export const login = (data: LoginCredentialsDTO): Promise<LoginResponse> => {
-  return axios.post("/login", data);
+  return axios.post(ApiEndpoints.login, data);
 };
