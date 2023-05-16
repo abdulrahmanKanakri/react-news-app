@@ -8,3 +8,13 @@ export interface NewsItem {
   publishedAt: string;
   thumbnail?: string;
 }
+
+export interface Category {
+  id: number;
+  name: string;
+}
+
+export interface Source {
+  id: number;
+  name: string;
+}

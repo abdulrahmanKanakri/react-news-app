@@ -5,4 +5,6 @@ export const ApiEndpoints = Object.freeze({
   getUser: "/me",
   updateUser: "/profile/update-settings",
   news: "/news",
+  categories: "/categories",
+  sources: "/sources",
 });

@@ -12,7 +12,7 @@ export const NewsFeed: React.FC = () => {
   const [featuredNewsItem, setFeaturedNewsItem] = useState<NewsItem>();
   const [news, setNews] = useState<NewsItem[]>([]);
 
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["news"],
     queryFn: () => getNews(),
     onSuccess: (data) => {
@@ -33,7 +33,7 @@ export const NewsFeed: React.FC = () => {
         >
           latest news
         </Typography>
-        <NewsList news={news} />
+        <NewsList news={news} loading={isLoading} />
       </Box>
     </>
   );

@@ -8,6 +8,7 @@ import { NewsItemComponent } from "./NewsItemComponent";
 
 interface NewsListProps {
   news: NewsItem[];
+  loading?: boolean;
 }
 
 const PlaceholderSkeleton = (
@@ -20,22 +21,28 @@ const PlaceholderSkeleton = (
   </Box>
 );
 
-export const NewsList: React.FC<NewsListProps> = ({ news }) => {
+export const NewsList: React.FC<NewsListProps> = ({ news, loading }) => {
   return (
     <>
       <Box>
         <Grid container spacing={2}>
-          {news.length > 0
-            ? news.map((item, i) => (
-                <Grid item sm={6} md={3} key={i}>
-                  <NewsItemComponent newsItem={item} />
-                </Grid>
-              ))
-            : new Array(4).fill(0).map((_, i) => (
-                <Grid item sm={6} md={3} key={i} width="100%">
-                  {PlaceholderSkeleton}
-                </Grid>
-              ))}
+          {loading ? (
+            new Array(4).fill(0).map((_, i) => (
+              <Grid item sm={6} md={3} key={i} width="100%">
+                {PlaceholderSkeleton}
+              </Grid>
+            ))
+          ) : news.length > 0 ? (
+            news.map((item, i) => (
+              <Grid item sm={6} md={3} key={i}>
+                <NewsItemComponent newsItem={item} />
+              </Grid>
+            ))
+          ) : (
+            <>
+              <h1>No data found</h1>
+            </>
+          )}
         </Grid>
       </Box>
     </>

@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AppPaths } from "@/constants/app-paths";
+
 import { AuthLayout } from "../components/Layout";
 import { RegisterForm } from "../components/RegisterForm";
 
@@ -10,7 +12,7 @@ export const Register: React.FC = () => {
   return (
     <>
       <AuthLayout>
-        <RegisterForm onSuccess={() => navigate("/")} />
+        <RegisterForm onSuccess={() => navigate(AppPaths.newsFeed)} />
       </AuthLayout>
     </>
   );

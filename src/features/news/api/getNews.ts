@@ -8,6 +8,7 @@ import { omitEmptyValues } from "@/utils";
 interface GetNewsParams {
   keyword?: string;
   category?: string;
+  source?: string;
 }
 
 export interface GetNewsResponse extends BaseResponse {

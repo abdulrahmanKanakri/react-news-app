@@ -1,27 +1,38 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useQuery } from "react-query";
+import Box from "@mui/material/Box";
 
 import { NewsList } from "../components/NewsList";
-import { getNews } from "../api/getNews";
-import { NewsItem } from "../types";
+import { NewsFilters } from "../components/NewsFilters";
+import { useCategories, useFetchNews, useSources } from "../hooks";
 
 export const NewsSearch: React.FC = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSource, setSelectedSource] = useState("");
 
   const location = useLocation();
 
-  useQuery({
-    queryKey: ["newsSearch", location.state],
-    queryFn: () => getNews({ keyword: location.state.q }),
-    onSuccess: (data) => {
-      setNews(data.data);
-    },
+  const { categories } = useCategories();
+  const { sources } = useSources();
+  const { news, isLoading } = useFetchNews({
+    keyword: location.state.q,
+    category: selectedCategory,
+    source: selectedSource,
   });
 
   return (
     <>
-      <NewsList news={news} />
+      <Box>
+        <NewsFilters
+          categories={categories}
+          sources={sources}
+          selectedCategory={selectedCategory}
+          selectedSource={selectedSource}
+          onCategoryChange={setSelectedCategory}
+          onSourceChange={setSelectedSource}
+        />
+        <NewsList news={news} loading={isLoading} />
+      </Box>
     </>
   );
 };

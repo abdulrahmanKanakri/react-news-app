@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ logout }) => {
         <NewspaperIcon sx={{ mr: 1 }} />
         <Typography
           component="a"
-          href="/"
+          href={AppPaths.newsFeed}
           variant="h6"
           noWrap
           sx={{
