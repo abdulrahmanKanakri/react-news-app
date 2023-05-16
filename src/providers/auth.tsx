@@ -30,6 +30,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     queryKey: ["user"],
     queryFn: () => getUser(),
     enabled: hasToken,
+    onError: () => {
+      storage.clearToken();
+      window.location.assign(window.location.origin);
+    },
   });
 
   useEffect(() => {

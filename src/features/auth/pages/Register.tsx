@@ -10,7 +10,7 @@ export const Register: React.FC = () => {
   return (
     <>
       <AuthLayout>
-        <RegisterForm onSuccess={() => navigate("/app")} />
+        <RegisterForm onSuccess={() => navigate("/")} />
       </AuthLayout>
     </>
   );

@@ -3,6 +3,8 @@ import { QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 import { queryClient } from "@/lib/react-query";
 
@@ -11,18 +13,27 @@ import { AuthProvider } from "./auth";
 
 const ErrorFallback = () => {
   return (
-    <div
-      className="text-red-500 w-screen h-screen flex flex-col justify-center items-center"
-      role="alert"
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        flexDirection: "column",
+      }}
     >
-      <h2 className="text-lg font-semibold">Ooops, something went wrong :( </h2>
+      <Typography variant="h4" component="h1">
+        Ooops, something went wrong :(
+      </Typography>
       <Button
-        className="mt-4"
+        sx={{ mt: 3 }}
+        variant="outlined"
         onClick={() => window.location.assign(window.location.origin)}
+        onMouseDown={(e) => e.preventDefault()}
       >
         Refresh
       </Button>
-    </div>
+    </Box>
   );
 };
 

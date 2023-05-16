@@ -10,7 +10,7 @@ export const Login: React.FC = () => {
   return (
     <>
       <AuthLayout>
-        <LoginForm onSuccess={() => navigate("/app")} />
+        <LoginForm onSuccess={() => navigate("/")} />
       </AuthLayout>
     </>
   );

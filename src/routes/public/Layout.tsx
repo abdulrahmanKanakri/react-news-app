@@ -7,7 +7,7 @@ export const PublicRoutesLayout: React.FC = () => {
   const { hasToken } = useAuth();
 
   if (hasToken) {
-    return <Navigate to="/app" />;
+    return <Navigate to="/" />;
   }
 
   return (
