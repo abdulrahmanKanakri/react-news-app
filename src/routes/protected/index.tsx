@@ -4,6 +4,14 @@ import { NewsFeed } from "@/features/news/pages/NewsFeed";
 
 import { ProtectedRoutesLayout } from "./Layout";
 
+function Profile() {
+  return (
+    <>
+      <h1>Profile</h1>
+    </>
+  );
+}
+
 export const protectedRoutes: RouteObject[] = [
   {
     path: "/",
@@ -12,6 +20,10 @@ export const protectedRoutes: RouteObject[] = [
       {
         path: "",
         element: <NewsFeed />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       { path: "*", element: <Navigate to="." /> },
     ],

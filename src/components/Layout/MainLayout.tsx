@@ -5,6 +5,8 @@ import { styled } from "@mui/material/styles";
 
 import Footer from "./Footer";
 import Header from "./Header";
+import { useLogout } from "@/features/auth/hooks/useLogout";
+import { useAuth } from "@/providers/auth";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -15,14 +17,19 @@ const Main = styled("main")({
 });
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  // const { logout, isError, isLoading, isSuccess } = useLogout();
-  // const { setUser } = useAuth();
+  const { logout } = useLogout();
+  const { setUser } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    setUser(undefined);
+  };
 
   return (
     <>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header />
+        <Header logout={handleLogout} />
         <Main>{children}</Main>
       </Container>
       <Footer
