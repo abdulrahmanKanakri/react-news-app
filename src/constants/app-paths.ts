@@ -3,4 +3,5 @@ export const AppPaths = Object.freeze({
   register: "/register",
   settings: "/account-settings",
   profile: "/profile",
+  newsSearch: "/search",
 });

@@ -1,14 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
+import Box from "@mui/material/Box";
+
+import { AppPaths } from "@/constants/app-paths";
+
 import { SettingsMenu } from "./SettingsMenu";
+import { SearchInput } from "./SearchInput";
 
 interface HeaderProps {
   logout: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ logout }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Toolbar disableGutters>
@@ -34,7 +42,14 @@ const Header: React.FC<HeaderProps> = ({ logout }) => {
         >
           News Aggregator
         </Typography>
-        <SettingsMenu onLogoutClick={logout} />
+        <Box sx={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>
+          <SearchInput
+            onSearch={(q) => {
+              navigate(AppPaths.newsSearch, { state: { q } });
+            }}
+          />
+          <SettingsMenu onLogoutClick={logout} />
+        </Box>
       </Toolbar>
     </>
   );

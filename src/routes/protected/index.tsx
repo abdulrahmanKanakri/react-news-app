@@ -1,6 +1,7 @@
 import { Navigate, RouteObject } from "react-router-dom";
 
 import { NewsFeed } from "@/features/news/pages/NewsFeed";
+import { NewsSearch } from "@/features/news/pages/NewsSearch";
 import { Profile } from "@/features/user/pages/Profile";
 import { AccountSettings } from "@/features/user/pages/AccountSettings";
 
@@ -14,6 +15,10 @@ export const protectedRoutes: RouteObject[] = [
       {
         path: "",
         element: <NewsFeed />,
+      },
+      {
+        path: "search",
+        element: <NewsSearch />,
       },
       {
         path: "profile",

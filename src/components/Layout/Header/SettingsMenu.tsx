@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -10,6 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import { deepPurple } from "@mui/material/colors";
+
 import { AppPaths } from "@/constants/app-paths";
 import { useAuth } from "@/providers/auth";
 import { getNameInitials } from "@/utils";
@@ -23,6 +25,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const open = Boolean(anchorEl);
@@ -37,7 +40,7 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
 
   return (
     <>
-      <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
+      <Box>
         <Tooltip title="Account settings">
           <IconButton
             size="small"
@@ -63,16 +66,22 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem component="a" onClick={handleClose} href={AppPaths.profile}>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              navigate(AppPaths.profile);
+            }}
+          >
             <ListItemIcon>
               <PersonIcon fontSize="small" />
             </ListItemIcon>
             Profile
           </MenuItem>
           <MenuItem
-            component="a"
-            onClick={handleClose}
-            href={AppPaths.settings}
+            onClick={() => {
+              handleClose();
+              navigate(AppPaths.settings);
+            }}
           >
             <ListItemIcon>
               <Settings fontSize="small" />
