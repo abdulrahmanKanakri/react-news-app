@@ -25,4 +25,8 @@ dist-ssr
 
 .git
 *.md
-.gitignore
+.*ignore
+.env*
+!.env.production
+Dockerfile
+docker-compose*
