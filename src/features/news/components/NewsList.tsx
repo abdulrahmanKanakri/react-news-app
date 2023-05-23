@@ -5,6 +5,7 @@ import Skeleton from "@mui/material/Skeleton";
 
 import { NewsItem } from "../types";
 import { NewsItemComponent } from "./NewsItemComponent";
+import { NoData } from "@/components/Layout/NoData";
 
 interface NewsListProps {
   news: NewsItem[];
@@ -40,7 +41,7 @@ export const NewsList: React.FC<NewsListProps> = ({ news, loading }) => {
             ))
           ) : (
             <>
-              <h1>No data found</h1>
+              <NoData />
             </>
           )}
         </Grid>

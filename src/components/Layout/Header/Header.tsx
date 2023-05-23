@@ -19,7 +19,14 @@ const Header: React.FC<HeaderProps> = ({ logout }) => {
 
   return (
     <>
-      <Toolbar disableGutters>
+      <Toolbar
+        disableGutters
+        sx={{
+          flexWrap: "wrap",
+          justifyContent: { xs: "center", sm: "unset" },
+          rowGap: { xs: 1, sm: "unset" },
+        }}
+      >
         <NewspaperIcon sx={{ mr: 1 }} />
         <Typography
           component="a"
@@ -42,7 +49,14 @@ const Header: React.FC<HeaderProps> = ({ logout }) => {
         >
           News Aggregator
         </Typography>
-        <Box sx={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            marginLeft: { sm: "auto" },
+            width: { xs: "100%", sm: "auto" },
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <SearchInput
             onSearch={(q) => {
               navigate(AppPaths.newsSearch, { state: { q } });
