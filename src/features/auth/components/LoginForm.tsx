@@ -21,6 +21,7 @@ import { Form } from "@/components/Form";
 import { useAuth } from "@/providers/auth";
 
 import { useLogin } from "../hooks/useLogin";
+import { AppNotification } from "@/providers/notification";
 
 const loginSchema = z.object({
   email: z.string().nonempty("Email is required").email("Email is invalid"),
@@ -44,11 +45,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { login, isSuccess, isLoading } = useLogin();
-  const { setUser } = useAuth();
+  const { refreshUser } = useAuth();
 
   const handleSubmit = async (values: LoginFormValues) => {
     const response = await login({ ...values });
-    setUser(response.data.user);
+    AppNotification.success(response.message);
+    refreshUser();
   };
 
   useEffect(() => {
@@ -92,7 +94,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
                 {...register("email")}
               />
               <FormControl variant="outlined" fullWidth margin="normal">
-                <InputLabel htmlFor="password" error={!!errors.password} required>
+                <InputLabel
+                  htmlFor="password"
+                  error={!!errors.password}
+                  required
+                >
                   Password
                 </InputLabel>
                 <OutlinedInput

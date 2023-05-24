@@ -1,12 +1,10 @@
 import { ApiEndpoints } from "@/constants/api-endpoints";
 import { axios } from "@/lib/axios";
-import { BaseResponse } from "@/types";
-
-import { UserInfo } from "../types";
+import { BaseResponse, User } from "@/types";
 
 export interface GetUserResponse extends BaseResponse {
   data: {
-    user: UserInfo;
+    user: User;
   };
 }
 

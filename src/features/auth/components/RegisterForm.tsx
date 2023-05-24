@@ -21,6 +21,7 @@ import { Form } from "@/components/Form";
 import { useAuth } from "@/providers/auth";
 
 import { useRegister } from "../hooks/useRegister";
+import { AppNotification } from "@/providers/notification";
 
 const registerSchema = z
   .object({
@@ -72,7 +73,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
     useState(false);
 
   const { register, isSuccess, isLoading } = useRegister();
-  const { setUser } = useAuth();
+  const { refreshUser } = useAuth();
 
   const handleSubmit = async (values: RegisterFormValues) => {
     const response = await register({
@@ -82,7 +83,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess }) => {
       password_confirmation: values.passwordConfirm,
     });
 
-    setUser(response.data.user);
+    AppNotification.success(response.message);
+
+    refreshUser();
   };
 
   useEffect(() => {

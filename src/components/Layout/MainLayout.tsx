@@ -5,9 +5,8 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 
-import { useLogout } from "@/features/auth/hooks/useLogout";
-import { useAuth } from "@/providers/auth";
 import { AppPaths } from "@/constants/app-paths";
+import { useLogout } from "@/features/auth/hooks/useLogout";
 
 import Footer from "./Footer";
 import Header from "./Header";
@@ -28,12 +27,11 @@ const backgroundHeightMap: { [key: string]: number } = {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const { logout } = useLogout();
-  const { setUser } = useAuth();
   const { pathname } = useLocation();
 
   const handleLogout = async () => {
     await logout();
-    setUser(undefined);
+    window.location.assign(AppPaths.login);
   };
 
   return (
