@@ -1,13 +1,13 @@
 import { useMutation } from "react-query";
 
-import { UpdateUserCredentialsDTO, updateUser } from "../api/updateUser";
+import { UpdateUserDTO, updateUser } from "../api/updateUser";
 
 export const useUpdateUser = () => {
   const { mutateAsync, isError, isLoading, isSuccess } = useMutation(
-    (data: UpdateUserCredentialsDTO) => updateUser(data)
+    (data: UpdateUserDTO) => updateUser(data)
   );
 
-  const handleUpdateUser = (data: UpdateUserCredentialsDTO) => {
+  const handleUpdateUser = (data: UpdateUserDTO) => {
     return mutateAsync(data);
   };
 

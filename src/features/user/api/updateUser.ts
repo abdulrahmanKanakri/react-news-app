@@ -2,7 +2,7 @@ import { ApiEndpoints } from "@/constants/api-endpoints";
 import { axios } from "@/lib/axios";
 import { BaseResponse, User } from "@/types";
 
-export type UpdateUserCredentialsDTO = {
+export type UpdateUserDTO = {
   name: string;
   password?: string;
   password_confirmation?: string;
@@ -15,7 +15,7 @@ export interface UpdateUserResponse extends BaseResponse {
 }
 
 export const updateUser = (
-  data: UpdateUserCredentialsDTO
+  data: UpdateUserDTO
 ): Promise<UpdateUserResponse> => {
   return axios.put(ApiEndpoints.updateUser, data);
 };

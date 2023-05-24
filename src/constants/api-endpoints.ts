@@ -3,8 +3,10 @@ export const ApiEndpoints = Object.freeze({
   register: "/register",
   logout: "/logout",
   getUser: "/me",
-  updateUser: "/profile/update-settings",
   news: "/news",
   categories: "/categories",
   sources: "/sources",
+  updateUser: "/profile/update-settings",
+  updatePreferedSources: "/profile/preferred-sources",
+  updatePreferedCategories: "/profile/preferred-categories",
 });

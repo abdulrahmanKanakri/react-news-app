@@ -69,13 +69,13 @@ export const SettingsMenu: React.FC<SettingsMenuProps> = ({
           <MenuItem
             onClick={() => {
               handleClose();
-              navigate(AppPaths.profile);
+              navigate(AppPaths.preferences);
             }}
           >
             <ListItemIcon>
               <PersonIcon fontSize="small" />
             </ListItemIcon>
-            Profile
+            Preferences
           </MenuItem>
           <MenuItem
             onClick={() => {

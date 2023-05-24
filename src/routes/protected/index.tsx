@@ -2,7 +2,7 @@ import { Navigate, RouteObject } from "react-router-dom";
 
 import { NewsFeed } from "@/features/news/pages/NewsFeed";
 import { NewsSearch } from "@/features/news/pages/NewsSearch";
-import { Profile } from "@/features/user/pages/Profile";
+import { Preferences } from "@/features/user/pages/Preferences";
 import { AccountSettings } from "@/features/user/pages/AccountSettings";
 
 import { ProtectedRoutesLayout } from "./Layout";
@@ -21,8 +21,8 @@ export const protectedRoutes: RouteObject[] = [
         element: <NewsSearch />,
       },
       {
-        path: "profile",
-        element: <Profile />,
+        path: "preferences",
+        element: <Preferences />,
       },
       {
         path: "account-settings",

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 
-import { getUser } from "@/features/user/api/getUser";
+import { useUser } from "@/features/user/hooks/useUser";
 import { User } from "@/types";
 import storage from "@/utils/storage";
 
@@ -9,11 +8,17 @@ type AuthContextType = {
   user?: User;
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
   hasToken?: boolean;
+  // refreshUser: () => Promise<void>
+  refreshUser: () => void;
 };
 
 export const AuthContext = React.createContext<AuthContextType>({
   setUser: () => {
     console.log("setUser is not implemented");
+  },
+  refreshUser: () => {
+    // return Promise.reject("refreshUser is not implemented")
+    console.log("refreshUser is not implemented");
   },
 });
 
@@ -26,24 +31,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const hasToken = !!storage.getToken();
 
-  const { data, isSuccess } = useQuery({
-    queryKey: ["user"],
-    queryFn: () => getUser(),
-    enabled: hasToken,
-    onError: () => {
-      storage.clearToken();
-      window.location.assign(window.location.origin);
-    },
-  });
+  const {
+    user: userInfo,
+    isSuccess,
+    isError,
+    refetch: refreshUser,
+  } = useUser();
 
   useEffect(() => {
     if (isSuccess) {
-      setUser(data.data.user);
+      setUser(userInfo);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, userInfo]);
+
+  useEffect(() => {
+    if (isError) {
+      storage.clearToken();
+      window.location.assign(window.location.origin);
+    }
+  }, [isError]);
 
   return (
-    <AuthContext.Provider value={{ user, hasToken, setUser }}>
+    <AuthContext.Provider value={{ user, hasToken, setUser, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );
