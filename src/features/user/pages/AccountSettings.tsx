@@ -30,7 +30,7 @@ const PlaceHolderSkeleton = (
 );
 
 export const AccountSettings: React.FC = () => {
-  const { user, setUser } = useAuth();
+  const { user, refreshUser } = useAuth();
 
   const userInfo = useMemo(() => {
     if (!user) return undefined;
@@ -53,8 +53,8 @@ export const AccountSettings: React.FC = () => {
           {userInfo ? (
             <SettingsForm
               user={userInfo}
-              onSuccess={(user) => {
-                setUser(user);
+              onSuccess={() => {
+                refreshUser();
               }}
             />
           ) : (

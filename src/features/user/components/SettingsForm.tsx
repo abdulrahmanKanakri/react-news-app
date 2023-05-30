@@ -13,9 +13,9 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import { Form } from "@/components/Form";
-import { User } from "@/types";
-import { useUpdateUser } from "../hooks/useUpdateUser";
 import { AppNotification } from "@/providers/notification";
+
+import { useUpdateUser } from "../hooks/useUpdateUser";
 
 const schema = z
   .object({
@@ -62,7 +62,7 @@ interface SettingsFormProps {
     lastName: string;
     email: string;
   };
-  onSuccess: (user: User) => void;
+  onSuccess: () => void;
 }
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({
@@ -82,7 +82,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
       password_confirmation: values.passwordConfirm,
     });
 
-    onSuccess(response.data.user);
+    onSuccess();
 
     AppNotification.success(response.message);
   };
